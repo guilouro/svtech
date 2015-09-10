@@ -9,5 +9,12 @@ class Product(models.Model):
     def __unicode__(self):
         return self.name
 
+    def to_dict_json(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'priority': self.priority
+        }
+
     class Meta:
         db_table = 'product'

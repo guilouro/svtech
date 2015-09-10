@@ -4,7 +4,9 @@
 	<h2>App is running... \o/</h2>
 
     <div ng-controller="PriorityController">
-        {[{test}]}
+        <div class="item" ng-repeat="p in products">
+            {[{p.name}]}
+        </div>
     </div>
 
 {% endblock content %}

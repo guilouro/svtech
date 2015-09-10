@@ -11,9 +11,5 @@ def home(request):
 
 
 def list(request):
-    products = serializers.serialize(
-        'json',
-        Product.objects.all(),
-        fields=('id', 'name', 'priority',)
-    )
+    products = [p.to_dict_json() for p in Product.objects.all()]
     return JsonResponse({'products': products})
