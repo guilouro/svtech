@@ -5,9 +5,9 @@
     <div class="container" ng-controller="PriorityController">
         <div class="product" ng-repeat="p in products">
             <div class="product__name">
-                {[{p.name}]}
                 <input id="{[{ p.id }]}" type="checkbox" ng-model="p.priority">
                 <label for="{[{ p.id }]}"></label>
+                <span>{[{p.name}]}</span>
             </div>
         </div>
     </div>
