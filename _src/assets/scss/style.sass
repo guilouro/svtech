@@ -1,0 +1,19 @@
+@import 'normalize'
+@import 'jeet/jeet'
+
+body
+    font-size: 15px
+
+.container
+    +j-center(95vw)
+
+.product
+    +j-column(1/5, $cycle:5, $gutter:1)
+    background-color: #eee
+    min-height: 100px
+    margin: 10px 0
+    border-radius: 5px
+
+    &__name
+        padding: 15px
+        text-align: center

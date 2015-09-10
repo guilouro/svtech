@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h2>App is running... \o/</h2>
 
-    <div ng-controller="PriorityController">
-        <div class="item" ng-repeat="p in products">
-            {[{p.name}]}
+    <div class="container" ng-controller="PriorityController">
+        <div class="product" ng-repeat="p in products">
+            <div class="product__name">
+                {[{p.name}]}
+            </div>
         </div>
     </div>
 
