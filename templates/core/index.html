@@ -2,7 +2,9 @@
 
 {% block content %}
 
+
     <div class="container" ng-controller="PriorityController">
+        <button ng-click="setPriority()">Sync</button>
         <div class="product" ng-repeat="p in products">
             <div class="product__name">
                 <input id="{[{ p.id }]}" type="checkbox" ng-model="p.priority">
