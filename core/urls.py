@@ -5,4 +5,5 @@ urlpatterns = patterns(
     'core.views',
     url(r'^$', 'home', name='home'),
     url(r'^list/$', 'list', name='list'),
+    url(r'^setpriority/$', 'set_priority', name='set_priority'),
 )
