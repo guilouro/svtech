@@ -19,10 +19,9 @@ def list(request):
 def set_priority(request):
     products = json.loads(request.body)['products']
 
-    for p in products:
-        prod = Product.objects.get(id=p['id'])
-        if prod.id != p['id']:
-            prod.priority = p.priority
+    for product in products:
+        prod = Product.objects.get(id=product['id'])
+        if prod.priority != product['priority']:
+            prod.priority = product['priority']
             prod.save()
-    print len(connection.queries)
     return JsonResponse({'status': 'ok'})
