@@ -65,6 +65,14 @@ DATABASES = {
     'default': parse('sqlite:///' + BASE_DIR.child('db.sqlite3'))
 }
 
+
+# CELERY SETTINGS
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
