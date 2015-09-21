@@ -24,4 +24,5 @@ def set_priority(request):
         if prod.priority != product['priority']:
             prod.priority = product['priority']
             prod.save()
+
     return JsonResponse({'status': 'ok'})
