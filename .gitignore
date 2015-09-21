@@ -15,3 +15,4 @@ static
 _src/node_modules
 _src/.sass-cache
 
+celerybeat-schedule

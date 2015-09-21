@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.db import connection
 from django.core import serializers
 from core.models import Product
-
+from core.tasks import save_priority
 
 def home(request):
     return render(request, 'core/index.html')
@@ -20,9 +20,6 @@ def set_priority(request):
     products = json.loads(request.body)['products']
 
     for product in products:
-        prod = Product.objects.get(id=product['id'])
-        if prod.priority != product['priority']:
-            prod.priority = product['priority']
-            prod.save()
+        save_priority.delay(product)
 
     return JsonResponse({'status': 'ok'})
