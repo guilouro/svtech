@@ -542,10 +542,25 @@ header .actions:nth-of-type(2n + 1) {
   text-align: center;
 }
 
+.checked {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  color: #6ec739;
+  position: absolute;
+  bottom: 10px;
+  width: 90%;
+  font-size: 1.3rem;
+  font-weight: bold;
+  pointer-events: none;
+}
+
 input[type="checkbox"] {
   opacity: 0;
 }
 input[type="checkbox"] + label {
+  border-radius: 5px;
   width: 100%;
   display: block;
   height: 100%;
@@ -557,7 +572,16 @@ input[type="checkbox"] + label {
   transition: 0.4s;
 }
 input[type="checkbox"]:checked + label {
-  background-color: #ddd;
+  background-color: #3A3A3A;
+}
+input[type="checkbox"]:checked ~ span {
+  color: #fff;
+  position: relative;
+  pointer-events: none;
+}
+input[type="checkbox"]:checked ~ .checked {
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 
 /*# sourceMappingURL=style.css.map */

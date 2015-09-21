@@ -3,6 +3,7 @@
 @import 'jeet/jeet'
 
 $primary_color: #58A02D
+$dark_color: #3A3A3A
 
 body
     font-size: 15px
@@ -15,7 +16,7 @@ header
     width: 100%
     padding: 10px
     border-bottom: 1px solid #333
-    background-color: #3A3A3A
+    background-color: $dark_color
     z-index: 10
 
     +j-cf()
@@ -77,11 +78,22 @@ header
         text-align: center
 
 
+.checked
+    +opacity(0)
+    +transition(0.4s)
+    color: lighten($primary_color, 10%)
+    position: absolute
+    bottom: 10px
+    width: 90%
+    font-size: 1.3rem
+    font-weight: bold
+    pointer-events: none
 
 input[type="checkbox"]
     opacity: 0
 
     + label
+        border-radius: 5px
         width: 100%
         display: block
         height: 100%
@@ -92,4 +104,12 @@ input[type="checkbox"]
         +transition(0.4s)
 
     &:checked + label
-        background-color: #ddd
+        background-color: $dark_color
+
+    &:checked ~ span
+        color: #fff
+        position: relative
+        pointer-events: none
+
+    &:checked ~ .checked
+        +opacity(1)
