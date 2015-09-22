@@ -19,15 +19,15 @@
     <![endif]-->
 
 </head>
-<body ng-app="svApp">
+<body ng-app="svApp" ng-controller="PriorityController">
 
     <header>
         <div class="top">
             <div class="brand">
                 <img src="{% static "img/logo.png" %}" class="logo" alt="">
             </div>
-            <div class="actions" ng-controller="PriorityController">
-                <a href="" class="btn-all" ng-click="selectAll()">select all</a>
+            <div class="actions">
+                <a href="" class="btn-all" ng-click="selectAll()">{[{ select_all ? 'unselect' : 'select' }]} all</a>
                 <a href="" class="btn-sync" ng-click="setPriority()">sync</a>
             </div>
         </div>
