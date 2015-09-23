@@ -396,6 +396,7 @@ th {
 body {
   font-size: 15px;
   background-color: #E4E4E4;
+  font-family: "PT Sans", sans-serif;
 }
 
 header {
@@ -474,11 +475,11 @@ header .actions:nth-of-type(2n + 1) {
 }
 
 .btn-sync {
-  padding: 10px 30px;
-  margin: 0 10px;
+  padding: 10px 20px;
+  margin: 0 5px;
   border-radius: 5px;
   background-color: #58A02D;
-  font-size: 15px;
+  font-size: 14px;
   display: inline-table;
   text-decoration: none;
   color: #fff;
@@ -488,17 +489,31 @@ header .actions:nth-of-type(2n + 1) {
 }
 
 .btn-all {
-  padding: 10px 30px;
-  margin: 0 10px;
+  padding: 10px 20px;
+  margin: 0 5px;
   border-radius: 5px;
   background-color: #8bd261;
-  font-size: 15px;
+  font-size: 14px;
   display: inline-table;
   text-decoration: none;
   color: #fff;
 }
 .btn-all:hover {
   background-color: #6ec739;
+}
+
+.btn-unall {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  background-color: #bababa;
+  font-size: 14px;
+  display: inline-table;
+  text-decoration: none;
+  color: #fff;
+}
+.btn-unall:hover {
+  background-color: #a0a0a0;
 }
 
 .container {

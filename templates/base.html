@@ -7,7 +7,8 @@
     <title>Priority</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static "css/style.css" %}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -27,8 +28,9 @@
                 <img src="{% static "img/logo.png" %}" class="logo" alt="">
             </div>
             <div class="actions">
-                <a href="" class="btn-all" ng-click="selectAll()">{[{ select_all ? 'unselect' : 'select' }]} all</a>
-                <a href="" class="btn-sync" ng-click="setPriority()">sync</a>
+                <a href="" class="btn-sync" ng-click="setPriority()"> <i class="fa fa-star"></i> set priority</a>
+                <a href="" class="btn-all" ng-click="checkAll(true)"> <i class="fa fa-check-circle"></i> check all</a>
+                <a href="" class="btn-unall" ng-click="checkAll(false)"> <i class="fa fa-times-circle"></i> uncheck all</a>
             </div>
         </div>
     </header>

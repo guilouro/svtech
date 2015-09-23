@@ -17,12 +17,10 @@ angular.module('svApp')
             console.log($scope.products);
         }
 
-        $scope.selectAll = function() {
+        $scope.checkAll = function(act) {
             angular.forEach($scope.products, function (item) {
-                item.priority = !$scope.select_all;
+                item.priority = act;
             });
-
-            $scope.select_all = !$scope.select_all;
         }
 
     }]);

@@ -8,6 +8,7 @@ $dark_color: #3A3A3A
 body
     font-size: 15px
     background-color: #E4E4E4
+    font-family: 'PT Sans', sans-serif
 
 
 header
@@ -41,11 +42,11 @@ header
 
 
 @mixin btn($color: #333)
-    padding: 10px 30px
-    margin: 0 10px
+    padding: 10px 20px
+    margin: 0 5px
     border-radius: 5px
     background-color: $color
-    font-size: 15px
+    font-size: 14px
     display: inline-table
     text-decoration: none
     color: #fff
@@ -58,6 +59,9 @@ header
 
 .btn-all
     +btn(lighten($primary_color,20%))
+
+.btn-unall
+    +btn(lighten($dark_color,50%))
 
 
 
