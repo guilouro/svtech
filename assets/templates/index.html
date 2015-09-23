@@ -1,0 +1,25 @@
+<header>
+    <div class="top">
+        <div class="brand">
+            <img src="/static/img/logo.png" class="logo" alt="">
+        </div>
+        <div class="actions">
+            <a href="" class="btn-sync" ng-click="setPriority()"> <i class="fa fa-star"></i> set priority</a>
+            <a href="" class="btn-all" ng-click="checkAll(true)"> <i class="fa fa-check-circle"></i> check all</a>
+            <a href="" class="btn-unall" ng-click="checkAll(false)"> <i class="fa fa-times-circle"></i> uncheck all</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="product" ng-repeat="p in products">
+        <div class="product__name">
+            <input id="{[{ p.id }]}" type="checkbox" ng-model="p.priority">
+            <label for="{[{ p.id }]}"></label>
+            <span>{[{p.name}]}</span>
+            <div class="checked">Priority</div>
+        </div>
+    </div>
+</div>
+

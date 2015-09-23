@@ -28,13 +28,21 @@ angular.module('svApp')
 
 },{}],2:[function(require,module,exports){
 "use strict";
-angular.module("svApp", [], function ($interpolateProvider) {
+angular.module("svApp", ['ngRoute'], function ($interpolateProvider) {
         $interpolateProvider.startSymbol("{[{");
         $interpolateProvider.endSymbol("}]}");
     }
-).config(function($httpProvider){
+).config(function($httpProvider, $routeProvider){
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+    $routeProvider
+        .when('/', {
+            templateUrl: '/static/templates/index.html',
+            controller: 'PriorityController'
+        })
+
+        .otherwise ({ redirectTo: '/' });
 });
 
 },{}]},{},[2,1]);
