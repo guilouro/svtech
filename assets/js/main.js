@@ -42,6 +42,11 @@ angular.module("svApp", ['ngRoute'], function ($interpolateProvider) {
             controller: 'PriorityController'
         })
 
+        .when('/login/', {
+            templateUrl: '/static/templates/login.html',
+            controller: 'LoginController'
+        })
+
         .otherwise ({ redirectTo: '/' });
 });
 

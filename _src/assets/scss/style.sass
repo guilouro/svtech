@@ -64,6 +64,54 @@ header
     +btn(lighten($dark_color,50%))
 
 
+.fullcontainer
+    width: 100%
+    height: 100vh
+    background: url(../img/bgdark.png) center center no-repeat
+    background-size: cover
+    position: relative
+
+
+.login
+    +j-align(both)
+    width: 300px
+    text-align: center
+
+    &__logo
+        margin: 10px 0
+
+    &__form input
+        width: 100%
+        padding: 10px 0
+        border: 0
+        text-align: center
+        outline: none
+
+        &:nth-child(1)
+            border-top-left-radius: 10px
+            border-top-right-radius: 10px
+            border-bottom: 1px solid #eee
+
+        &:nth-child(2)
+            border-bottom-left-radius: 10px
+            border-bottom-right-radius: 10px
+
+    &__form button
+        width: 100%
+        margin: 15px 0
+        border: 0
+        border-radius: 5px
+        padding: 10px 0
+        text-align: center
+        color: #fff
+        background-color: $primary_color
+
+        &:hover
+            background-color: darken($primary_color, 15%)
+
+
+
+
 
 .container
     margin-top: 70px
