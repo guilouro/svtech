@@ -37,8 +37,9 @@ angular.module('svApp')
             function () {
                 $state.go('index.main');
             },
-            function () {
-                $scope.login.error = true;
+            function (error) {
+                // $scope.error = true;
+                console.log(error);
             });
 
             console.log($scope.username, $scope.passwd);
