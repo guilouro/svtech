@@ -24,11 +24,32 @@ angular.module('svApp')
             });
         }
 
+    }])
+
+
+    .controller('LoginController', ['$scope', 'Auth', function($scope, Auth){
+
+        $scope.login = function() {
+
+            Auth.login({
+                username: $scope.username,
+                password: $scope.passwd
+            },
+            function () {
+                $state.go('index.main');
+            },
+            function () {
+                $scope.login.error = true;
+            });
+
+            console.log($scope.username, $scope.passwd);
+        }
+
     }]);
 
 },{}],2:[function(require,module,exports){
 "use strict";
-angular.module("svApp", ['ngRoute'], function ($interpolateProvider) {
+angular.module("svApp", ['ngRoute', 'ngCookies'], function ($interpolateProvider) {
         $interpolateProvider.startSymbol("{[{");
         $interpolateProvider.endSymbol("}]}");
     }
@@ -48,6 +69,32 @@ angular.module("svApp", ['ngRoute'], function ($interpolateProvider) {
         })
 
         .otherwise ({ redirectTo: '/' });
-});
+
+}).factory('Auth', ['$cookieStore', '$http', function ($cookieStore, $http) {
+
+    var currentUser = $cookieStore.get('login') || 0,
+    publicStates = ['login', 'signup', 'recovery'];
+
+    return {
+
+        login: function (user, success, error) {
+            $http.post('/login/', user)
+            .success(function () {
+                currentUser = 1;
+                success();
+            })
+            .error(error);
+        },
+
+        authorize: function(state) {
+            return (this.isLoggedIn() && (publicStates.indexOf(state) < 0)) || (!this.isLoggedIn() && (publicStates.indexOf(state) >= 0));
+        },
+
+        isLoggedIn: function() {
+            return !!currentUser;
+        }
+    };
+
+}]);
 
 },{}]},{},[2,1]);

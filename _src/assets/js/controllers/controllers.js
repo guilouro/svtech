@@ -23,4 +23,25 @@ angular.module('svApp')
             });
         }
 
+    }])
+
+
+    .controller('LoginController', ['$scope', 'Auth', function($scope, Auth){
+
+        $scope.login = function() {
+
+            Auth.login({
+                username: $scope.username,
+                password: $scope.passwd
+            },
+            function () {
+                $state.go('index.main');
+            },
+            function () {
+                $scope.login.error = true;
+            });
+
+            console.log($scope.username, $scope.passwd);
+        }
+
     }]);

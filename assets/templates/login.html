@@ -4,9 +4,9 @@
             <img src="/static/img/logo.png" alt="Sieve">
         </div>
         <div class="login__form">
-            <input type="text">
-            <input type="text">
-            <button>entrar</button>
+            <input type="text" ng-model='username'>
+            <input type="password" ng-model='passwd'>
+            <button ng-click='login()'>entrar</button>
         </div>
     </div>
 </div>
