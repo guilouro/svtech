@@ -46,3 +46,6 @@ angular.module('svApp')
         }
 
     }]);
+
+
+// http://stackoverflow.com/questions/21891218/using-state-methods-with-statechangestart-tostate-and-fromstate-in-angular-ui

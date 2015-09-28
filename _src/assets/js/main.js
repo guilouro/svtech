@@ -1,29 +1,31 @@
 "use strict";
-angular.module("svApp", ['ngRoute', 'ngCookies'], function ($interpolateProvider) {
+angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvider) {
         $interpolateProvider.startSymbol("{[{");
         $interpolateProvider.endSymbol("}]}");
-    }
-).config(function($httpProvider, $routeProvider){
+
+}).config(function($httpProvider, $stateProvider, $urlRouterProvider){
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-    $routeProvider
-        .when('/', {
+    $stateProvider
+        .state('index', {
+            url: '/',
             templateUrl: '/static/templates/index.html',
             controller: 'PriorityController'
         })
 
-        .when('/login/', {
+        .state('login', {
+            url: '/login/',
             templateUrl: '/static/templates/login.html',
             controller: 'LoginController'
-        })
+        });
 
-        .otherwise ({ redirectTo: '/' });
+        $urlRouterProvider.otherwise ('/');
 
 }).factory('Auth', ['$cookieStore', '$http', function ($cookieStore, $http) {
 
     var currentUser = $cookieStore.get('login') || 0,
-    publicStates = ['login', 'signup', 'recovery'];
+    publicStates = ['login'];
 
     return {
 
@@ -45,4 +47,20 @@ angular.module("svApp", ['ngRoute', 'ngCookies'], function ($interpolateProvider
         }
     };
 
+}]).run(['$rootScope', '$state', 'Auth', function($rootScope, $state, Auth) {
+
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
+        console.log(event, toState, toParams, fromState);
+
+        if (!Auth.authorize(toState.name)) {
+            event.preventDefault();
+            if (fromState.url === '^') {
+                if (Auth.isLoggedIn()) {
+                    $state.go('index');
+                } else {
+                    $state.go('login');
+                }
+            }
+        }
+    });
 }]);
