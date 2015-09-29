@@ -121,8 +121,6 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
 
-        console.log("dadasdasdasd");
-
         if (!Auth.authorize(toState.name)) {
             event.preventDefault();
             if (fromState.url === '^') {
