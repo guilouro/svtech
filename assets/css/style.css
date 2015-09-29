@@ -138,7 +138,7 @@ mark {
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-small {
+small, .login p {
   font-size: 80%;
 }
 
@@ -516,6 +516,20 @@ header .actions:nth-of-type(2n + 1) {
   background-color: #a0a0a0;
 }
 
+.btn-out {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  background-color: #ff6666;
+  font-size: 14px;
+  display: inline-table;
+  text-decoration: none;
+  color: #fff;
+}
+.btn-out:hover {
+  background-color: #ff3333;
+}
+
 .fullcontainer {
   width: 100%;
   height: 100vh;
@@ -532,6 +546,9 @@ header .actions:nth-of-type(2n + 1) {
   transform: translate(-50%, -50%);
   width: 300px;
   text-align: center;
+}
+.login p {
+  color: #fff;
 }
 .login__logo {
   margin: 10px 0;

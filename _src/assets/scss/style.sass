@@ -63,6 +63,9 @@ header
 .btn-unall
     +btn(lighten($dark_color,50%))
 
+.btn-out
+    +btn(lighten(red,20%))
+
 
 .fullcontainer
     width: 100%
@@ -76,6 +79,10 @@ header
     +j-align(both)
     width: 300px
     text-align: center
+
+    p
+        color: #fff
+        @extend small
 
     &__logo
         margin: 10px 0

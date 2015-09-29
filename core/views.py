@@ -1,6 +1,6 @@
 # coding: utf-8
 import json
-from django.contrib.auth import authenticate as auth, login as auth_login
+from django.contrib.auth import authenticate as auth, login as auth_login, logout as auth_logout
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
@@ -27,6 +27,11 @@ def login(request):
         return HttpResponse(status=200)
     else:
         return HttpResponse('Login error', status=401)
+
+
+def logout(request):
+    auth_logout(request)
+    return HttpResponse(status=200)
 
 
 def list(request):

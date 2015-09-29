@@ -1,6 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 angular.module('svApp')
-    .controller('PriorityController', ['$scope', '$http', function($scope, $http) {
+    .controller('PriorityController', ['$scope', '$http', '$state', 'Auth', function($scope, $http, $state, Auth) {
 
         $scope.products = {};
         $scope.select_all = false;
@@ -12,10 +12,9 @@ angular.module('svApp')
         $scope.setPriority = function() {
             $http.post('/setpriority/', {products: $scope.products}).
                 then(function(response){
-                    console.log(response);
+                    // console.log(response);
                 });
 
-            console.log($scope.products);
         }
 
         $scope.checkAll = function(act) {
@@ -24,10 +23,18 @@ angular.module('svApp')
             });
         }
 
+        $scope.logout = function() {
+            Auth.logout(function(){
+                $state.go('login');
+            });
+        }
+
     }])
 
 
     .controller('LoginController', ['$scope', '$state', 'Auth', function($scope, $state, Auth){
+
+        $scope.error = '';
 
         $scope.login = function() {
 
@@ -37,20 +44,14 @@ angular.module('svApp')
             },
             function () {
                 $state.go('index');
-                console.log('Login ok');
             },
             function (error) {
-                // $scope.error = true;
-                console.log(error);
+                $scope.error = 'Login incorreto';
             });
-
-            console.log($scope.username, $scope.passwd);
         }
 
     }]);
 
-
-// http://stackoverflow.com/questions/21891218/using-state-methods-with-statechangestart-tostate-and-fromstate-in-angular-ui
 },{}],2:[function(require,module,exports){
 "use strict";
 angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvider) {
@@ -72,6 +73,11 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
             url: '/login/',
             templateUrl: '/static/templates/login.html',
             controller: 'LoginController'
+        })
+
+        .state('logout', {
+            url: '/logout/',
+            controller: 'LogoutController'
         });
 
         $urlRouterProvider.otherwise ('/');
@@ -81,22 +87,25 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
     var currentUser = $cookieStore.get('svtch_usr') || 0;
     var publicStates = ['login'];
 
-    console.log($cookieStore.get('svtch_usr'));
-
-    // $http.get('/logged_in/')
-    //     .success(function(data){
-    //         currentUser = data.status;
-    //     });
-
     return {
 
         login: function (user, success, error) {
             $http.post('/login/', user)
             .success(function () {
                 $cookieStore.put('svtch_usr', 1);
+                currentUser = 1;
                 success();
             })
             .error(error);
+        },
+
+        logout: function(success) {
+            $http.get('/logout/')
+                .success(function(){
+                    $cookieStore.remove('svtch_usr');
+                    currentUser = 0;
+                    success();
+                });
         },
 
         authorize: function(state) {
@@ -111,6 +120,8 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
 }]).run(['$rootScope', '$state', 'Auth', function($rootScope, $state, Auth) {
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
+
+        console.log("dadasdasdasd");
 
         if (!Auth.authorize(toState.name)) {
             event.preventDefault();

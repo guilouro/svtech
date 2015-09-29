@@ -18,6 +18,11 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
             url: '/login/',
             templateUrl: '/static/templates/login.html',
             controller: 'LoginController'
+        })
+
+        .state('logout', {
+            url: '/logout/',
+            controller: 'LogoutController'
         });
 
         $urlRouterProvider.otherwise ('/');
@@ -33,17 +38,20 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
             $http.post('/login/', user)
             .success(function () {
                 $cookieStore.put('svtch_usr', 1);
+                currentUser = 1;
                 success();
             })
             .error(error);
         },
 
-        logout: function() {
+        logout: function(success) {
             $http.get('/logout/')
                 .success(function(){
                     $cookieStore.remove('svtch_usr');
+                    currentUser = 0;
+                    success();
                 });
-        }
+        },
 
         authorize: function(state) {
             return (this.isLoggedIn() && (publicStates.indexOf(state) < 0)) || (!this.isLoggedIn() && (publicStates.indexOf(state) >= 0));
@@ -57,6 +65,8 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
 }]).run(['$rootScope', '$state', 'Auth', function($rootScope, $state, Auth) {
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
+
+        console.log("dadasdasdasd");
 
         if (!Auth.authorize(toState.name)) {
             event.preventDefault();

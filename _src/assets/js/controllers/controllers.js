@@ -1,5 +1,5 @@
 angular.module('svApp')
-    .controller('PriorityController', ['$scope', '$http', function($scope, $http) {
+    .controller('PriorityController', ['$scope', '$http', '$state', 'Auth', function($scope, $http, $state, Auth) {
 
         $scope.products = {};
         $scope.select_all = false;
@@ -11,10 +11,9 @@ angular.module('svApp')
         $scope.setPriority = function() {
             $http.post('/setpriority/', {products: $scope.products}).
                 then(function(response){
-                    console.log(response);
+                    // console.log(response);
                 });
 
-            console.log($scope.products);
         }
 
         $scope.checkAll = function(act) {
@@ -23,10 +22,18 @@ angular.module('svApp')
             });
         }
 
+        $scope.logout = function() {
+            Auth.logout(function(){
+                $state.go('login');
+            });
+        }
+
     }])
 
 
     .controller('LoginController', ['$scope', '$state', 'Auth', function($scope, $state, Auth){
+
+        $scope.error = '';
 
         $scope.login = function() {
 
@@ -36,17 +43,10 @@ angular.module('svApp')
             },
             function () {
                 $state.go('index');
-                console.log('Login ok');
             },
             function (error) {
-                // $scope.error = true;
-                console.log(error);
+                $scope.error = 'Login incorreto';
             });
-
-            console.log($scope.username, $scope.passwd);
         }
 
     }]);
-
-
-// http://stackoverflow.com/questions/21891218/using-state-methods-with-statechangestart-tostate-and-fromstate-in-angular-ui
