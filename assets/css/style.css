@@ -691,8 +691,7 @@ input[type="checkbox"]:checked ~ .checked {
   margin-top: 10px;
   text-align: center;
 }
-.table-status .buttons a {
-  cursor: pointer;
+.table-status .buttons button {
   padding: 10px 20px;
   margin: 0 5px;
   border-radius: 5px;
@@ -701,8 +700,11 @@ input[type="checkbox"]:checked ~ .checked {
   display: inline-table;
   text-decoration: none;
   color: #fff;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
 }
-.table-status .buttons a:hover {
+.table-status .buttons button:hover {
   background-color: #878787;
 }
 

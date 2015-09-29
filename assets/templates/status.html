@@ -22,13 +22,13 @@
             </tr>
         </table>
         <div class="buttons">
-            <a ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
                 <i class="fa fa-angle-double-left"></i>
-            </a>
+            </button>
             {[{currentPage+1}]}/{[{numberOfPages()}]}
-            <a ng-disabled="currentPage >= products.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+            <button ng-disabled="currentPage >= products.length/pageSize - 1" ng-click="currentPage=currentPage+1">
                 <i class="fa fa-angle-double-right"></i>
-            </a>
+            </button>
         </div>
     </div>
 </div>

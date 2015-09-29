@@ -61,7 +61,11 @@ angular.module('svApp')
 
         $http.get('/list/').
             success(function(data){
-                $scope.products = data.products;
+                for (var i = 0; i < data.products.length; i++) {
+                    if(data.products[i].priority) {
+                        $scope.products.push(data.products[i]);
+                    }
+                };
             });
 
         $scope.numberOfPages=function(){
