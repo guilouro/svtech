@@ -488,6 +488,20 @@ header .actions:nth-of-type(2n + 1) {
   background-color: #427822;
 }
 
+.btn-status {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  background-color: #6d6d6d;
+  font-size: 14px;
+  display: inline-table;
+  text-decoration: none;
+  color: #fff;
+}
+.btn-status:hover {
+  background-color: #545454;
+}
+
 .btn-all {
   padding: 10px 20px;
   margin: 0 5px;
