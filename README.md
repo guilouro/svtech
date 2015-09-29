@@ -1,20 +1,64 @@
-Django Boilerplate
-=========================== 
+Sieve Priority
+===========================
 
-This is a simple boilerplate for django projects
+Sistema de marcação de prioridades.
 
-### Usage
+Aplicação teste em [http://sieve.guilhermelouro.com.br/](http://sieve.guilhermelouro.com.br/)
 
-This assumes you have pip and django 1.7 installed (if not, try `$ pip install django==1.7`)
-
-    $ django-admin.py startproject --template https://github.com/guilouro/django-boilerplate/archive/master.zip project_name .
-    $ pip install -r requirements.txt
-    $ python manage.py migrate
-
-#### Packages Required
-- **[Unipath]**: An object-oriented approach to file/directory operations
-- **[dj-database-url]**: Allows you to utilize the [12factor](http://www.12factor.net/backing-services) inspired `DATABASE_URL` environment variable to configure your app.
+### Como usar
+Assumindo a utilização do virtualenvwrapper
 
 
-[Unipath]: https://github.com/mikeorr/Unipath
-[dj-database-url]: https://github.com/kennethreitz/dj-database-url
+#### Iniciando o projeto
+
+```
+$ mkproject sieve_priority
+(sieve_priority)$ git clone https://github.com/guilouro/svtech.git .
+```
+
+#### Instalando as dependências
+
+```
+(sieve_priority)$ make install
+```
+
+#### Iniciando os workers no celery
+
+```
+(sieve_priority)$ python manage.py celery worker -B -l info
+```
+ou modo daemon
+
+```
+(sieve_priority)$ python manage.py celeryd_detach worker -B -l info
+```
+
+-------------------
+
+### Front
+
+* `_src/_grunt:` Tasks do grunt
+* `_src/assets/js:` Arquivos de javascript
+* `_src/assets/scss:` Módulos sass
+
+* `assets/templates:` Templates das rotas do angular
+
+#### Dependências
+
+* [Grunt](http://gruntjs.com/)
+* [AngularJS](https://angularjs.org/)
+* [Sass](http://sass-lang.com/)
+
+-------------------
+
+### Back
+
+* `templates:` Template base do django
+* `assets:` Estáticos do django
+* `core:` App principal
+
+#### Dependências
+
+* [Redis](http://redis.io/)
+* [Celery](http://celery.readthedocs.org)
+* [Django1.7](https://docs.djangoproject.com/en/1.7/)
