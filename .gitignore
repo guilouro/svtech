@@ -13,6 +13,7 @@ Scripts
 .env
 static
 fabfile
+*.conf
 _src/node_modules
 _src/.sass-cache
 sievetech/settings_local.py
