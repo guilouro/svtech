@@ -56,13 +56,24 @@ angular.module('svApp')
     .controller('StatusController', ['$scope', '$http', function($scope, $http){
 
         $scope.products = [];
+        $scope.currentPage = 0;
+        $scope.pageSize = 10;
 
         $http.get('/list/').
             success(function(data){
                 $scope.products = data.products;
             });
 
-    }]);
+        $scope.numberOfPages=function(){
+            return Math.ceil($scope.products.length/$scope.pageSize);
+        }
+
+    }]).filter('startFrom', function() {
+        return function(input, start) {
+            start = +start;
+            return input.slice(start);
+        }
+    });
 
 },{}],2:[function(require,module,exports){
 "use strict";

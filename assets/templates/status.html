@@ -16,11 +16,20 @@
             <th>id</th>
             <th>Nome</th>
 
-            <tr ng-repeat="p in products" ng-if="!p.priority">
+            <tr ng-repeat="p in products | startFrom:currentPage*pageSize | limitTo:pageSize">
                 <td>{[{p.id}]}</td>
                 <td>{[{p.name}]}</td>
             </tr>
         </table>
+        <div class="buttons">
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                Previous
+            </button>
+            {[{currentPage+1}]}/{[{numberOfPages()}]}
+            <button ng-disabled="currentPage >= products.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                Next
+            </button>
+        </div>
     </div>
 </div>
 
