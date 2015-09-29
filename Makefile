@@ -1,6 +1,6 @@
 all: install
 
-install: front-install local migrate initdb
+install: local migrate initdb
 
 update: local migrate
 
