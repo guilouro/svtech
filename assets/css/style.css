@@ -666,4 +666,26 @@ input[type="checkbox"]:checked ~ .checked {
   filter: alpha(opacity=100);
 }
 
+.table-status {
+  width: auto;
+  max-width: 800px;
+  float: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+.table-status table {
+  border: 1px solid #bbb;
+  width: 100%;
+}
+.table-status td, .table-status th {
+  padding: 10px;
+  border-bottom: 1px solid #bbb;
+}
+.table-status tr > td {
+  border-left: 1px solid #bbb;
+}
+
 /*# sourceMappingURL=style.css.map */

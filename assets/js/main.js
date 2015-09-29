@@ -50,6 +50,18 @@ angular.module('svApp')
             });
         }
 
+    }])
+
+
+    .controller('StatusController', ['$scope', '$http', function($scope, $http){
+
+        $scope.products = [];
+
+        $http.get('/list/').
+            success(function(data){
+                $scope.products = data.products;
+            });
+
     }]);
 
 },{}],2:[function(require,module,exports){
@@ -67,6 +79,12 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
             url: '/',
             templateUrl: '/static/templates/index.html',
             controller: 'PriorityController'
+        })
+
+        .state('status', {
+            url: '/status/',
+            templateUrl: '/static/templates/status.html',
+            controller: 'StatusController'
         })
 
         .state('login', {

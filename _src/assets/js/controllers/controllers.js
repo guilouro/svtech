@@ -49,4 +49,16 @@ angular.module('svApp')
             });
         }
 
+    }])
+
+
+    .controller('StatusController', ['$scope', '$http', function($scope, $http){
+
+        $scope.products = [];
+
+        $http.get('/list/').
+            success(function(data){
+                $scope.products = data.products;
+            });
+
     }]);

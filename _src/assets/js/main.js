@@ -14,6 +14,12 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
             controller: 'PriorityController'
         })
 
+        .state('status', {
+            url: '/status/',
+            templateUrl: '/static/templates/status.html',
+            controller: 'StatusController'
+        })
+
         .state('login', {
             url: '/login/',
             templateUrl: '/static/templates/login.html',
