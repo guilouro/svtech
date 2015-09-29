@@ -24,33 +24,39 @@ angular.module("svApp", ['ui.router', 'ngCookies'], function ($interpolateProvid
 
 }).factory('Auth', ['$cookieStore', '$http', function ($cookieStore, $http) {
 
-    var currentUser = $cookieStore.get('login') || 0,
-    publicStates = ['login'];
+    var currentUser = $cookieStore.get('svtch_usr') || 0;
+    var publicStates = ['login'];
 
     return {
 
         login: function (user, success, error) {
             $http.post('/login/', user)
             .success(function () {
-                currentUser = 1;
+                $cookieStore.put('svtch_usr', 1);
                 success();
             })
             .error(error);
         },
+
+        logout: function() {
+            $http.get('/logout/')
+                .success(function(){
+                    $cookieStore.remove('svtch_usr');
+                });
+        }
 
         authorize: function(state) {
             return (this.isLoggedIn() && (publicStates.indexOf(state) < 0)) || (!this.isLoggedIn() && (publicStates.indexOf(state) >= 0));
         },
 
         isLoggedIn: function() {
-            return !!currentUser;
+            return currentUser;
         }
     };
 
 }]).run(['$rootScope', '$state', 'Auth', function($rootScope, $state, Auth) {
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
-        console.log(event, toState, toParams, fromState);
 
         if (!Auth.authorize(toState.name)) {
             event.preventDefault();

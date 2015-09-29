@@ -41,3 +41,8 @@ def set_priority(request):
         save_priority.delay(product)
 
     return JsonResponse({'status': 'ok'})
+
+
+def logged_in(request):
+    return JsonResponse({'status': request.user.is_authenticated()})
+

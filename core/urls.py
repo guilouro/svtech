@@ -7,4 +7,5 @@ urlpatterns = patterns(
     url(r'^login/$', 'login', name='login'),
     url(r'^list/$', 'list', name='list'),
     url(r'^setpriority/$', 'set_priority', name='set_priority'),
+    url(r'^logged_in/$', 'logged_in', name='logged_in'),
 )

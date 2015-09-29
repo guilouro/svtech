@@ -26,7 +26,7 @@ angular.module('svApp')
     }])
 
 
-    .controller('LoginController', ['$scope', 'Auth', function($scope, Auth){
+    .controller('LoginController', ['$scope', '$state', 'Auth', function($scope, $state, Auth){
 
         $scope.login = function() {
 
@@ -35,7 +35,8 @@ angular.module('svApp')
                 password: $scope.passwd
             },
             function () {
-                $state.go('index.main');
+                $state.go('index');
+                console.log('Login ok');
             },
             function (error) {
                 // $scope.error = true;
